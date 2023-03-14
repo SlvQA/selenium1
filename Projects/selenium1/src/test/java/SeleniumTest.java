@@ -24,5 +24,6 @@ public class SeleniumTest {
         }else{
             System.out.println("TEST FAILED. The current title is \"" + currentTitle + "\". The expected title is \"" + searchTerm + "\".");
         }
+        System.out.println("Goodbye");
     }
 }
