@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.testng.Assert;
 
 public class SeleniumTest {
     public static void main(String[] args) {
@@ -15,15 +16,19 @@ public class SeleniumTest {
 
         WebElement searchBox = driver.findElement(By.name("q")); // finding the searchBox by name (may be by unique ID)
         String searchTerm = "chatGPT";
+        String expectedTitle = "chatGPT - Google Search";
         searchBox.sendKeys(searchTerm, Keys.ENTER); // typing the search term and hitting ENTER
 
-        String currentTitle = driver.getTitle(); // returns the Title of the page
+        String actualTitle = driver.getTitle(); // returns the Title of the page
 
-        if (currentTitle.contains(searchTerm)){
-            System.out.println("TEST PASSED. The current title is \"" + currentTitle + "\". The expected title is \"" + searchTerm + "\".");
-        }else{
-            System.out.println("TEST FAILED. The current title is \"" + currentTitle + "\". The expected title is \"" + searchTerm + "\".");
-        }
+//        if (currentTitle.contains(searchTerm)){
+//            System.out.println("TEST PASSED. The current title is \"" + currentTitle + "\". The expected title is \"" + searchTerm + "\".");
+//        }else{
+//            System.out.println("TEST FAILED. The current title is \"" + currentTitle + "\". The expected title is \"" + searchTerm + "\".");
+//        }
+        driver.close();
+        Assert.assertEquals(actualTitle, expectedTitle);
+
         System.out.println("Goodbye");
     }
 }
